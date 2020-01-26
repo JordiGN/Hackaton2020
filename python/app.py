@@ -14,6 +14,14 @@ def sortedFrame(frame, state):
 
 app = flask.Flask(__name__)
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Hello, World!"
+
+@app.route("/createuser", method=["POST"])
+def create_user():
+    return CreateUserService().create(request.get_json())
 @app.route('/locations/<state>')
 
 def getPostsByState(state):
@@ -21,4 +29,5 @@ def getPostsByState(state):
 
 
 if __name__ == "__main__":
+	Schema();
     app.run(debug = True)
