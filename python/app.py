@@ -29,5 +29,5 @@ def getPostsByState(state):
 
 
 if __name__ == "__main__":
-	Schema();
+	Schema()
     app.run(debug = True)
