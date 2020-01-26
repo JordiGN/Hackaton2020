@@ -35,17 +35,20 @@ def index():
     #     if posts.has_prev else None
     return render_template('index.html', title='Home')
 
-@app.route('/locations', methods=['GET', 'POST'])
-def stateSelected():
-     form = ProjectSended()
+@app.route('/locations/<state>', methods=['GET', 'POST'])
+def stateselected(state):
+    form = ProjectSended()
+    projects = Project.query.all()
     if form.validate_on_submit():
-        project = Project(title=form.project.title,description=form.project.description,
-            date=form.project.date,time=form.project.time,state=state,user=current_user)
+        project = Project(title=form.title,description=form.description,
+            date=form.date,time=form.time,state=state,user_id=current_user)
         db.session.add(project)
         db.session.commit()
         flash('Your post is now live!')
         #return redirect(url_for('index'))
-    return render_template("stateselected.html")
+    
+    return render_template("stateselected.html",state=state, form=form, projects=projects)
+    
 
 @app.route('/explore')
 @login_required
