@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
+    TextAreaField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, \
+    Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -27,3 +29,11 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
             
+class ProjectSended(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    description = TextAreaField('Say something', validators=[
+        DataRequired(), Length(min=1, max=140)])
+    date = StringField('When Is going to be?')
+    time = StringField('What time Is going to be?')
+    state = StringField('Wich state will be', validators=[DataRequired()])
+    submit = SubmitField('Submit')

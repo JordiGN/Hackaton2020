@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
-{% block content %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
     <h1>Hi, {{ current_user.username }}!</h1>
     <h2>Select your state</h2>
     <!-- <select>
@@ -9,55 +9,58 @@
     		<option></option>
     	{% endfor %}
     </select> -->
-    <a href="/locations/AL" id="Alabama"><div class="state">Alabama</div></a>
-    <a href="/locations/AK" id="Alaska"><div class="state">Alaska</div></a>
-    <a href="/locations/AZ" id="Arizona"><div class="state">Arizona</div></a>
-    <a href="/locations/AR" id="Arkansas"><div class="state">Arkansas</div></a>
-    <a href="/locations/CA" id="California"><div class="state">California</div></a>
-    <a href="/locations/CO" id="Colorado"><div class="state">Colorado</div></a>
-    <a href="/locations/CT" id="Connecticut"><div class="state">Connecticut</div></a>
-    <a href="/locations/DE" id="Delaware"><div class="state">Delaware</div></a>
-    <a href="/locations/FL" id="Florida"><div class="state">Florida</div></a>
-    <a href="/locations/GA" id="Georgia"><div class="state">Georgia</div></a>
-    <a href="/locations/HI" id="Hawaii"><div class="state">Hawaii</div></a>
-    <a href="/locations/ID" id="Idaho"><div class="state">Idaho</div></a>
-    <a href="/locations/IL" id="Illinois"><div class="state">Illinois</div></a>
-    <a href="/locations/IN" id="Indiana"><div class="state">Indiana</div></a>
-    <a href="/locations/IA" id="Iowa"><div class="state">Iowa</div></a>
-    <a href="/locations/KS" id="Kansas"><div class="state">Kansas</div></a>
-    <a href="/locations/KY" id="Kentucky"><div class="state">Kentucky</div></a>
-    <a href="/locations/LA" id="Louisiana"><div class="state">Louisiana</div></a>
-    <a href="/locations/ME" id="Maine"><div class="state">Maine</div></a>
-    <a href="/locations/MD" id="Maryland"><div class="state">Maryland</div></a>
-    <a href="/locations/MA" id="Massachusetts"><div class="state">Massachusetts</div></a>
-    <a href="/locations/MI" id="Michigan"><div class="state">Michigan</div></a>
-    <a href="/locations/MN" id="Minnesota"><div class="state">Minnesota</div></a>
-    <a href="/locations/MS" id="Mississippi"><div class="state">Mississippi</div></a>
-    <a href="/locations/MO" id="Missouri"><div class="state">Missouri</div></a>
-    <a href="/locations/MT" id="Montana"><div class="state">Montana</div></a>
-    <a href="/locations/NE" id="Nebraska"><div class="state">Nebraska</div></a>
-    <a href="/locations/NV" id="Nevada"><div class="state">Nevada</div></a>
-    <a href="/locations/NH" id="New Hampshire"><div class="state">New Hampshire</div></a>
-    <a href="/locations/NJ" id="New Jersey"><div class="state">New Jersey</div></a>
-    <a href="/locations/NM" id="New Mexico"><div class="state">New Mexico</div></a>
-    <a href="/locations/NY" id="New York"><div class="state">New York</div></a>
-    <a href="/locations/NC" id="North Carolina"><div class="state">North Carolina</div></a>
-    <a href="/locations/ND" id="North Dakota"><div class="state">North Dakota</div></a>
-    <a href="/locations/OH" id="Ohio"><div class="state">Ohio</div></a>
-    <a href="/locations/OK" id="Oklahoma"><div class="state">Oklahoma</div></a>
-    <a href="/locations/OR" id="Oregon"><div class="state">Oregon</div></a>
-    <a href="/locations/PA" id="Pennsylvania"><div class="state">Pennsylvania</div></a>
-    <a href="/locations/RI" id="Rhode Island"><div class="state">Rhode Island</div></a>
-    <a href="/locations/SC" id="South Carolina"><div class="state">South Carolina</div></a>
-    <a href="/locations/SD" id="South Dakota"><div class="state">South Dakota</div></a>
-    <a href="/locations/TN" id="Tennessee"><div class="state">Tennessee</div></a>
-    <a href="/locations/TX" id="Texas"><div class="state">Texas</div></a>
-    <a href="/locations/UT" id="Utah"><div class="state">Utah</div></a>
-    <a href="/locations/VT" id="Vermont"><div class="state">Vermont</div></a>
-    <a href="/locations/VA" id="Virginia"><div class="state">Virginia</div></a>
-    <a href="/locations/WA" id="Washington"><div class="state">Washington</div></a>
-    <a href="/locations/WV" id="West Virginia"><div class="state">West Virginia</div></a>
-    <a href="/locations/WI" id="Wisconsin"><div class="state">Wisconsin</div></a>
-    <a href="/locations/WY" id="Wyoming"><div class="state">Wyoming</div></a>
+    <div>
+        <a href="/locations/AL" id="Alabama"><div class="state">Alabama</div></a>
+        <a href="/locations/AK" id="Alaska"><div class="state">Alaska</div></a>
+        <a href="/locations/AZ" id="Arizona"><div class="state">Arizona</div></a>
+        <a href="/locations/AR" id="Arkansas"><div class="state">Arkansas</div></a>
+        <a href="/locations/CA" id="California"><div class="state">California</div></a>
+        <a href="/locations/CO" id="Colorado"><div class="state">Colorado</div></a>
+        <a href="/locations/CT" id="Connecticut"><div class="state">Connecticut</div></a>
+        <a href="/locations/DE" id="Delaware"><div class="state">Delaware</div></a>
+        <a href="/locations/FL" id="Florida"><div class="state">Florida</div></a>
+        <a href="/locations/GA" id="Georgia"><div class="state">Georgia</div></a>
+        <a href="/locations/HI" id="Hawaii"><div class="state">Hawaii</div></a>
+        <a href="/locations/ID" id="Idaho"><div class="state">Idaho</div></a>
+        <a href="/locations/IL" id="Illinois"><div class="state">Illinois</div></a>
+        <a href="/locations/IN" id="Indiana"><div class="state">Indiana</div></a>
+        <a href="/locations/IA" id="Iowa"><div class="state">Iowa</div></a>
+        <a href="/locations/KS" id="Kansas"><div class="state">Kansas</div></a>
+        <a href="/locations/KY" id="Kentucky"><div class="state">Kentucky</div></a>
+        <a href="/locations/LA" id="Louisiana"><div class="state">Louisiana</div></a>
+        <a href="/locations/ME" id="Maine"><div class="state">Maine</div></a>
+        <a href="/locations/MD" id="Maryland"><div class="state">Maryland</div></a>
+        <a href="/locations/MA" id="Massachusetts"><div class="state">Massachusetts</div></a>
+        <a href="/locations/MI" id="Michigan"><div class="state">Michigan</div></a>
+        <a href="/locations/MN" id="Minnesota"><div class="state">Minnesota</div></a>
+        <a href="/locations/MS" id="Mississippi"><div class="state">Mississippi</div></a>
+        <a href="/locations/MO" id="Missouri"><div class="state">Missouri</div></a>
+        <a href="/locations/MT" id="Montana"><div class="state">Montana</div></a>
+        <a href="/locations/NE" id="Nebraska"><div class="state">Nebraska</div></a>
+        <a href="/locations/NV" id="Nevada"><div class="state">Nevada</div></a>
+        <a href="/locations/NH" id="New Hampshire"><div class="state">New Hampshire</div></a>
+        <a href="/locations/NJ" id="New Jersey"><div class="state">New Jersey</div></a>
+        <a href="/locations/NM" id="New Mexico"><div class="state">New Mexico</div></a>
+        <a href="/locations/NY" id="New York"><div class="state">New York</div></a>
+        <a href="/locations/NC" id="North Carolina"><div class="state">North Carolina</div></a>
+        <a href="/locations/ND" id="North Dakota"><div class="state">North Dakota</div></a>
+        <a href="/locations/OH" id="Ohio"><div class="state">Ohio</div></a>
+        <a href="/locations/OK" id="Oklahoma"><div class="state">Oklahoma</div></a>
+        <a href="/locations/OR" id="Oregon"><div class="state">Oregon</div></a>
+        <a href="/locations/PA" id="Pennsylvania"><div class="state">Pennsylvania</div></a>
+        <a href="/locations/RI" id="Rhode Island"><div class="state">Rhode Island</div></a>
+        <a href="/locations/SC" id="South Carolina"><div class="state">South Carolina</div></a>
+        <a href="/locations/SD" id="South Dakota"><div class="state">South Dakota</div></a>
+        <a href="/locations/TN" id="Tennessee"><div class="state">Tennessee</div></a>
+        <a href="/locations/TX" id="Texas"><div class="state">Texas</div></a>
+        <a href="/locations/UT" id="Utah"><div class="state">Utah</div></a>
+        <a href="/locations/VT" id="Vermont"><div class="state">Vermont</div></a>
+        <a href="/locations/VA" id="Virginia"><div class="state">Virginia</div></a>
+        <a href="/locations/WA" id="Washington"><div class="state">Washington</div></a>
+        <a href="/locations/WV" id="West Virginia"><div class="state">West Virginia</div></a>
+        <a href="/locations/WI" id="Wisconsin"><div class="state">Wisconsin</div></a>
+        <a href="/locations/WY" id="Wyoming"><div class="state">Wyoming</div></a>
+    </div>
+    
     
 {% endblock %}
