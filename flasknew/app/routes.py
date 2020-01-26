@@ -5,8 +5,10 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ProjectSended
 from app.models import User, Project
+import numpy as np
+import pandas as pd
 #from app.email import send_password_reset_email
-
+mainTable = pd.read_csv('/Users/jordigarcia/Desktop/Hackaton/Hackaton2020/flasknew/app/raw_data.csv')
 
 @app.before_request
 def before_request():
@@ -37,17 +39,18 @@ def index():
 
 @app.route('/locations/<state>', methods=['GET', 'POST'])
 def stateselected(state):
-    form = ProjectSended()
-    projects = Project.query.all()
-    if form.validate_on_submit():
-        project = Project(title=form.title,description=form.description,
-            date=form.date,time=form.time,state=state,user_id=current_user)
-        db.session.add(project)
-        db.session.commit()
-        flash('Your post is now live!')
+    # form = ProjectSended()
+    # projects = Project.query.all()
+    # if form.validate_on_submit():
+    #     project = Project(title=form.title,description=form.description,
+    #         date=form.date,time=form.time,state=state,user_id=current_user)
+    #     db.session.add(project)
+    #     db.session.commit()
+    #     flash('Your post is now live!')
         #return redirect(url_for('index'))
-    
-    return render_template("stateselected.html",state=state, form=form, projects=projects)
+    # return render_template('simple.html',  tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('stateselected.html', tables = [mainTable.to_html(classes = 'data')], titles = mainTable.columns.values)
+    #return render_template("stateselected.html",state=state, form=form, projects=projects)
     
 
 @app.route('/explore')

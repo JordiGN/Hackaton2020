@@ -3,12 +3,16 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-    <h1>You are seeing projects from, {{ state }} !</h1>
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+    <!--<h1>You are seeing projects from, {{ state }} !</h1>
     {% if form %}
     {{ wtf.quick_form(form) }}
     <br>
     {% endif %}
-    <!-- {% for project in projects %}
+     {% for project in projects %}
         {% include '_project.html' %}
     {% endfor %} -->
 {% endblock %}
